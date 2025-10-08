@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Powerful Page — Azizbek</title>
+  <meta name="description" content="A modern, responsive and interactive single-file demo page (HTML + CSS + JS).">
+  <style>
+    :root{
+      --bg: #0f1724;
+      --card: #0b1220;
+      --muted: #94a3b8;
+      --accent: linear-gradient(90deg,#7c3aed,#06b6d4);
+      --glass: rgba(255,255,255,0.04);
+      --glass-2: rgba(255,255,255,0.02);
+      --radius: 14px;
+      --maxw: 1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;padding:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, 'Helvetica Neue', Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.12), transparent),
+                  radial-gradient(900px 600px at 90% 90%, rgba(6,182,212,0.06), transparent),
+                  var(--bg);
+      color:#e6eef8; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      padding:32px 18px;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .wrap{width:100%;max-width:var(--maxw);}
+    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:52px;height:52px;border-radius:12px;background:var(--accent);display:grid;place-items:center;font-weight:700}
+    .logo span{font-family:monospace}
+    nav{display:flex;gap:14px}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:10px;font-size:14px}
+    nav a:hover{color:#fff;background:var(--glass)}
+    .hero{display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:center}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:var(--radius);padding:28px;box-shadow:0 6px 24px rgba(2,6,23,0.6)}
+    .hero-left h1{font-size:32px;margin:0 0 12px}
+    .hero-left p{color:var(--muted);margin:0 0 18px}
+    .cta{display:flex;gap:12px}
+    .btn{background:linear-gradient(90deg,#7c3aed,#06b6d4);border:none;padding:10px 16px;border-radius:10px;color:white;font-weight:600;cursor:pointer}
+    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+
+    /* right panel preview */
+    .preview{border-radius:12px;overflow:hidden;background:linear-gradient(180deg,#071122, #071229);padding:14px}
+    .phone{width:100%;height:620px;background:linear-gradient(180deg,#071229,#071229);border-radius:10px;padding:14px;display:flex;flex-direction:column}
+    .screen{flex:1;border-radius:8px;background:linear-gradient(180deg,#061021,#081827);padding:18px;overflow:auto}
+    .feature-list{display:grid;gap:12px}
+    .feature{display:flex;gap:12px;align-items:center;padding:8px;background:var(--glass-2);border-radius:10px}
+    .dot{width:46px;height:46px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(180deg,#0b1220, #071126)}
+
+    section{margin-top:22px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+    .card .title{font-weight:700}
+    .muted{color:var(--muted);font-size:14px}
+
+    footer{margin-top:28px;color:var(--muted);font-size:13px;text-align:center;padding:18px}
+
+    /* animations */
+    .fade{opacity:0;transform:translateY(12px);transition:all .6s ease}
+    .fade.show{opacity:1;transform:none}
+
+    /* responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;}
+      .preview{order:-1}
+      .screen{height:360px}
+      .grid-3{grid-template-columns:1fr}
+    }
+
+    /* small helpers */
+    .controls{display:flex;gap:8px;align-items:center}
+    .search{background:var(--glass);padding:8px;border-radius:10px;color:var(--muted);border:1px solid rgba(255,255,255,0.02)}
+    .theme-toggle{padding:8px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.04);cursor:pointer;color:var(--muted)}
+
+    /* form */
+    form .row{display:flex;gap:8px}
+    input,textarea{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px;border-radius:8px;color:inherit;resize:none}
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo"><span>AZ</span></div>
+        <div>
+          <div style="font-weight:700">Azizbek — Powerful Page</div>
+          <div class="muted" style="font-size:12px">Modern HTML/CSS/JS demo</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:14px;align-items:center">
+        <nav>
+          <a href="#features">Features</a>
+          <a href="#work">Work</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <div class="controls">
+          <div class="search">Ctrl+K</div>
+          <button class="theme-toggle" id="themeToggle">Toggle Theme</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="hero">
+      <div class="hero-left card fade" id="h1">
+        <h1>Powerful, fast and accessible web page</h1>
+        <p class="muted">Single-file demo with responsive layout, smooth animations, accessible controls and a contact form. Copy it to VS Code and run with Live Server.</p>
+        <div class="cta">
+          <button class="btn" id="scrollFeatures">Explore features</button>
+          <button class="btn secondary" id="downloadBtn">Download HTML</button>
+        </div>
+
+        <section id="features">
+          <h3 style="margin:18px 0 8px">Why this page?</h3>
+          <div class="grid-3">
+            <div class="card">
+              <div class="title">Responsive</div>
+              <div class="muted">Works great on mobile and desktop.</div>
+            </div>
+            <div class="card">
+              <div class="title">Fast</div>
+              <div class="muted">No frameworks — tiny and snappy.</div>
+            </div>
+            <div class="card">
+              <div class="title">Accessible</div>
+              <div class="muted">Keyboard and screen-reader friendly.</div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <aside class="preview card fade" id="panel">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+          <div class="muted">Live Preview</div>
+          <div class="muted">127.0.0.1:5500</div>
+        </div>
+        <div class="phone">
+          <div class="screen" id="screen">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+              <div style="font-weight:700">App</div>
+              <div class="muted">v1.0</div>
+            </div>
+            <div class="feature-list">
+              <div class="feature"><div class="dot">⚡</div><div><div style="font-weight:700">Fast</div><div class="muted">Lightweight and instant</div></div></div>
+              <div class="feature"><div class="dot">🔒</div><div><div style="font-weight:700">Secure</div><div class="muted">No remote dependencies</div></div></div>
+              <div class="feature"><div class="dot">📱</div><div><div style="font-weight:700">Mobile-ready</div><div class="muted">Touch-friendly</div></div></div>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:12px">
+            <button class="btn" id="openDemo">Open demo</button>
+            <button class="btn secondary" id="copyBtn">Copy URL</button>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <section id="work" class="fade">
+      <h2 style="margin-top:22px">Recent work</h2>
+      <div class="grid-3">
+        <div class="card">
+          <div style="font-weight:700">Project Apollo</div>
+          <div class="muted">A lightning-fast landing page for startups.</div>
+        </div>
+        <div class="card">
+          <div style="font-weight:700">Portfolio X</div>
+          <div class="muted">Personal portfolio template.</div>
+        </div>
+        <div class="card">
+          <div style="font-weight:700">Dashboard UI</div>
+          <div class="muted">Minimal admin dashboard mock.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="fade">
+      <h2 style="margin-top:22px">Contact me</h2>
+      <div class="card" style="margin-top:12px;display:grid;gap:12px">
+        <form id="contactForm" novalidate>
+          <div class="row">
+            <input id="name" placeholder="Ismingiz" required>
+            <input id="email" placeholder="Email" type="email" required>
+          </div>
+          <textarea id="message" rows="4" placeholder="Xabaringiz" required></textarea>
+          <div style="display:flex;gap:8px;align-items:center">
+            <button class="btn" type="submit">Yuborish</button>
+            <div id="formMsg" class="muted"></div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      Built with ❤️ — Copy and customize. — Azizbek
+    </footer>
+  </div>
+
+  <script>
+    // Simple helpers: show fade anims when visible
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('show'); })
+    },{threshold:0.12});
+    document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+    // Smooth scroll to features
+    document.getElementById('scrollFeatures').addEventListener('click',e=>{
+      document.getElementById('features').scrollIntoView({behavior:'smooth',block:'start'});
+    });
+
+    // Theme toggle (simple)
+    const themeToggle = document.getElementById('themeToggle');
+    let dark = true;
+    themeToggle.addEventListener('click',()=>{
+      dark = !dark;
+      if(!dark){
+        document.documentElement.style.setProperty('--bg','#f8fafc');
+        document.documentElement.style.setProperty('--card','#ffffff');
+        document.documentElement.style.setProperty('--muted','#475569');
+        document.documentElement.style.setProperty('--glass','rgba(2,6,23,0.03)');
+      } else {
+        document.documentElement.style.setProperty('--bg','#0f1724');
+        document.documentElement.style.setProperty('--card','#0b1220');
+        document.documentElement.style.setProperty('--muted','#94a3b8');
+        document.documentElement.style.setProperty('--glass','rgba(255,255,255,0.04)');
+      }
+    });
+
+    // Download HTML quickly
+    document.getElementById('downloadBtn').addEventListener('click',()=>{
+      const html = `<!doctype html>\n<html>\n<head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>Powerful Page — Demo</title></head>\n<body>\n${document.querySelector('.wrap').outerHTML}\n</body>\n</html>`;
+      const blob = new Blob([html],{type:'text/html'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'powerful_page_export.html';
+      a.click();
+      URL.revokeObjectURL(a.href);
+    });
+
+    // Copy URL (works when served)
+    document.getElementById('copyBtn').addEventListener('click',async()=>{
+      try{
+        await navigator.clipboard.writeText(location.href);
+        alert('URL copied to clipboard');
+      }catch(e){ alert('Unable to copy — run via Live Server'); }
+    });
+
+    // Simple open demo (new tab)
+    document.getElementById('openDemo').addEventListener('click',()=>{
+      window.open(location.href,'_blank');
+    });
+
+    // Basic contact form (client-side)
+    document.getElementById('contactForm').addEventListener('submit',e=>{
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const msgEl = document.getElementById('formMsg');
+      if(!name||!email||!message){ msgEl.textContent='Iltimos, barcha maydonlarni to‘ldiring.'; return; }
+      // simulate success
+      msgEl.textContent='Xabaringiz yuborildi. Rahmat!';
+      e.target.reset();
+      setTimeout(()=>msgEl.textContent='',3000);
+    });
+
+    // keyboard shortcut to focus search (Ctrl+K)
+    document.addEventListener('keydown',e=>{
+      if((e.ctrlKey||e.metaKey)&& e.key.toLowerCase()==='k'){
+        e.preventDefault();
+        alert('Search shortcut pressed — customize me!');
+      }
+    });
+  </script>
+</body>
+</html>
